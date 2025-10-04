@@ -69,7 +69,7 @@ PUT _ingest/pipeline/log_line
     {
       "grok": {
         "field": "message",
-        "patterns": ["%{IPORHOST:clientip} %{HTTPDATE:timestamp} %{NUMBER:response_status:int}"]
+        "patterns": ["^%{IPORHOST:clientip} %{HTTPDATE:timestamp} %{NUMBER:response_status:int}"]
       }
     }
   ]
@@ -158,7 +158,7 @@ PUT _ingest/pipeline/log_line
     {
       "grok": {
         "field": "message",
-        "patterns": ["The issue number %{NUMBER:issue_number} is %{STATUS:status}"],
+        "patterns": ["^The issue number %{NUMBER:issue_number} is %{STATUS:status}"],
         "pattern_definitions" : {
           "NUMBER" : "\\d{3,4}",
           "STATUS" : "open|closed"
@@ -182,7 +182,7 @@ PUT _ingest/pipeline/log_line
     {  
       "grok": {  
         "field": "message",  
-        "patterns": ["%{HTTPDATE:timestamp} %{IPORHOST:clientip}", "%{IPORHOST:clientip} %{HTTPDATE:timestamp} %{NUMBER:response_status:int}"],  
+        "patterns": ["^%{HTTPDATE:timestamp} %{IPORHOST:clientip}", "%{IPORHOST:clientip} %{HTTPDATE:timestamp} %{NUMBER:response_status:int}"],
         "trace_match": true  
       }  
     }  
